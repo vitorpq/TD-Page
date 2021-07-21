@@ -135,3 +135,34 @@ fig2.update_layout(
 
 st.header('Preço de Compra e Venda')
 st.plotly_chart(fig2, use_container_width=True)
+
+# Footer
+footer="""<style>
+a:link , a:visited{
+color: gray;
+background-color: transparent;
+text-decoration: underline;
+}
+
+a:hover,  a:active {
+color: Tomato;
+background-color: transparent;
+text-decoration: underline;
+}
+
+.footer {
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+background-color: white;
+color: black;
+text-align: center;
+}
+</style>
+<div class="footer">
+<p>Made in <a href='https://https://streamlit.io'><img src='https://avatars3.githubusercontent.com/u/45109972?s=400&v=4' style='width:25px;height:25px'></a>
+by <a style='display: block; text-align: center;' href="http://vitor.tk/" target="_blank">/home/vitor</a></p>
+</div>
+"""
+st.markdown(footer,unsafe_allow_html=True)
