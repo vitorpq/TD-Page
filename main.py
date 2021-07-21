@@ -159,6 +159,7 @@ background-color: white;
 color: black;
 text-align: center;
 }
+#MainMenu {visibility: hidden;}
 </style>
 <div class="footer">
 <p>Made in <a href='https://https://streamlit.io'><img src='https://avatars3.githubusercontent.com/u/45109972?s=400&v=4' style='width:25px;height:25px'></a>
