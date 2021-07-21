@@ -7,7 +7,7 @@ from plotly.subplots import make_subplots
 import yfinance as yf
 
 st.set_page_config(page_title="Dados do Tesouro Direto",page_icon="💰", layout="wide")
-@st.cache(allow_output_mutation=True)
+@st.cache(show_spinner=False, allow_output_mutation=True, suppress_st_warning=True)
 # %% Funções
 
 def busca_titulos_td():
@@ -47,14 +47,9 @@ def busca_recompras_tesouro():
 #%%
 st.title("💰 Dados do Tesouro Direto")
 
-data_load_state = st.sidebar.text('Carregando dados do Tesouro Direto...')
 titulos = busca_titulos_td()
 titulos.sort_index(inplace=True)
 
-#st.table(titulos.iloc[:,:2])
-
-
-# %%
 tipos_titulos = tipos_titulos = titulos.index.droplevel(level=1).droplevel(level=1).drop_duplicates().to_list()
 tipos_titulos.sort(reverse=True)
 TipoTesouro = st.sidebar.selectbox('Tipo Tesouro', tipos_titulos)
@@ -64,10 +59,7 @@ DatasVenc = titulos.loc[(TipoTesouro)].index.droplevel(level=1).drop_duplicates(
 DatasVenc = DatasVenc.sort_values(ascending=False)
 
 Vencimento = st.sidebar.selectbox('Data Vencimento', DatasVenc[DatasVenc > '2020-12-31'].strftime('%Y-%m-%d'))
-data_load_state.text('Dados Carregados com Sucesso')
-# Preço unitário Base
 
-#preco = titulos.loc[titulos['Tipo Titulo'] == TipoTesouro].loc[titulos['Data Vencimento'] == Vencimento, 'PU Base Manha']
 preco = titulos.loc[(TipoTesouro, Vencimento)]
 
 
